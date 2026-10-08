@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 200">
+  <!-- PreitenWars-Logo (statische Version für <img>, Favicon-Kontexte, Vorschaubilder) -->
+  <style>
+    text { font-family: "Arial Black", "Luckiest Guy", Impact, sans-serif; font-weight: 900; }
+    .o { fill: none; stroke: #0b0720; stroke-width: 14; stroke-linejoin: round; }
+  </style>
+  <g text-anchor="middle">
+    <text class="o" x="260" y="92" font-size="88" transform="translate(0 8)">PREITEN</text>
+    <text class="o" x="260" y="92" font-size="88">PREITEN</text>
+    <text x="260" y="92" font-size="88">
+      <tspan fill="#e0262c">P</tspan><tspan fill="#ffc800">R</tspan><tspan fill="#1fa83d">E</tspan><tspan fill="#1f4fd8">I</tspan><tspan fill="#e0262c">T</tspan><tspan fill="#ffc800">E</tspan><tspan fill="#1fa83d">N</tspan>
+    </text>
+    <text class="o" x="260" y="186" font-size="100" transform="translate(0 8)">WARS</text>
+    <text class="o" x="260" y="186" font-size="100">WARS</text>
+    <text x="260" y="186" font-size="100" fill="#ffc800">WARS</text>
+  </g>
+</svg>

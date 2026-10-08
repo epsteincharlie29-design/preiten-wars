@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- PreitenWars: Pixel-Fahne auf rotem Schild -->
+  <path fill="#0b0720" d="M2 0h12v1h1v9h-1v2h-1v1h-2v1H9v1H7v-1H5v-1H3v-1H2v-2H1V1h1z"/>
+  <path fill="#e0262c" d="M2 1h12v9h-1v2h-2v1H9v1H7v-1H5v-1H3v-2H2z"/>
+  <path fill="#ff5a5f" d="M2 1h12v1H2z M2 2h1v7H2z"/>
+  <!-- Fahnenmast + Fahne -->
+  <path fill="#0b0720" d="M5 3h1v9H5z"/>
+  <path fill="#ffc800" d="M6 3h5v1h-1v1h1v1H6z"/>
+</svg>

@@ -1,0 +1,263 @@
+/* =====================================================================
+   PreitenWars – Retro-Pixel-Theme (N64-Farben, Pixel-Optik wie alte Games)
+   Wird am Ende von styles.css importiert und färbt die komplette App um:
+   Menüs, Modals und das In-Game-HUD (alle Lit-Komponenten nutzen Light DOM,
+   daher greifen diese globalen Regeln überall).
+   ===================================================================== */
+
+@theme {
+  /* Schriften */
+  --font-sans: "Pixelify Sans", ui-monospace, monospace;
+  --font-display: "Press Start 2P", "Pixelify Sans", monospace;
+
+  /* Pixel-Optik: keine runden Ecken (Kreise bleiben über rounded-full) */
+  --radius-xs: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
+  --radius-4xl: 0;
+
+  /* Neutrale Töne → lila "Konsolen-Plastik" (ersetzt alle Grau-Paletten) */
+  --color-gray-50: #f4f1ff;
+  --color-gray-100: #e6e0ff;
+  --color-gray-200: #cdc2f7;
+  --color-gray-300: #ab9de3;
+  --color-gray-400: #8676c8;
+  --color-gray-500: #6656a8;
+  --color-gray-600: #4d3f8c;
+  --color-gray-700: #3b2f72;
+  --color-gray-800: #2a2159;
+  --color-gray-900: #1d1645;
+  --color-gray-950: #120d2f;
+
+  --color-zinc-50: #f4f1ff;
+  --color-zinc-100: #e6e0ff;
+  --color-zinc-200: #cdc2f7;
+  --color-zinc-300: #ab9de3;
+  --color-zinc-400: #8676c8;
+  --color-zinc-500: #6656a8;
+  --color-zinc-600: #4d3f8c;
+  --color-zinc-700: #3b2f72;
+  --color-zinc-800: #2a2159;
+  --color-zinc-900: #1d1645;
+  --color-zinc-950: #120d2f;
+
+  --color-slate-50: #f4f1ff;
+  --color-slate-100: #e6e0ff;
+  --color-slate-200: #cdc2f7;
+  --color-slate-300: #ab9de3;
+  --color-slate-400: #8676c8;
+  --color-slate-500: #6656a8;
+  --color-slate-600: #4d3f8c;
+  --color-slate-700: #3b2f72;
+  --color-slate-800: #2a2159;
+  --color-slate-900: #1d1645;
+  --color-slate-950: #120d2f;
+
+  --color-neutral-50: #f4f1ff;
+  --color-neutral-100: #e6e0ff;
+  --color-neutral-200: #cdc2f7;
+  --color-neutral-300: #ab9de3;
+  --color-neutral-400: #8676c8;
+  --color-neutral-500: #6656a8;
+  --color-neutral-600: #4d3f8c;
+  --color-neutral-700: #3b2f72;
+  --color-neutral-800: #2a2159;
+  --color-neutral-900: #1d1645;
+  --color-neutral-950: #120d2f;
+
+  /* Die vier N64-Farben */
+  --color-blue-300: #8aa9ff;
+  --color-blue-400: #5a82ff;
+  --color-blue-500: #3563f2;
+  --color-blue-600: #1f4fd8;
+  --color-blue-700: #1a3fb0;
+  --color-blue-800: #18348a;
+
+  --color-green-400: #4fd16a;
+  --color-green-500: #2fbf4f;
+  --color-green-600: #1fa83d;
+  --color-green-700: #188a32;
+  --color-emerald-400: #4fd16a;
+  --color-emerald-500: #2fbf4f;
+  --color-emerald-600: #1fa83d;
+  --color-emerald-700: #188a32;
+
+  --color-red-400: #ff5a5f;
+  --color-red-500: #f23a40;
+  --color-red-600: #e0262c;
+  --color-red-700: #b81d22;
+
+  --color-yellow-300: #ffe066;
+  --color-yellow-400: #ffd53d;
+  --color-yellow-500: #ffc800;
+  --color-yellow-600: #e0a800;
+
+  /* Markenfarben des Originals umbiegen */
+  --color-malibu-blue: #3563f2;
+  --color-aquarius: #8aa9ff;
+  --color-bright-blue: #3563f2;
+  --color-cyber-yellow: #ffc800;
+  --color-deep-navy: #120d2f;
+  --color-hex-cyan: #5a82ff;
+  --color-frame-orange: #ffc800;
+  --color-surface: #1d1645;
+  --color-dawn-blue: #cdc2f7;
+  --color-bright-white: #ffffff;
+  --color-limestone: #8676c8;
+  --shadow-malibu-blue-pill: 0 0 0 2px #0b0720;
+  --shadow-malibu-blue-ring-sm: 0 0 0 4px rgba(255, 200, 0, 0.35);
+  --shadow-malibu-blue-ring-lg: 0 0 0 6px rgba(255, 200, 0, 0.45);
+
+  --shadow-malibu-blue: 0 0 0 3px #0b0720, 0 6px 0 rgba(0, 0, 0, 0.35);
+  --shadow-malibu-blue-soft: 0 0 0 2px #0b0720;
+  --shadow-malibu-blue-strong: 0 0 0 3px #ffc800, 0 6px 0 rgba(0, 0, 0, 0.35);
+  --shadow-lobby-card-hover: 0 0 0 3px #ffc800, 0 8px 0 rgba(0, 0, 0, 0.35);
+  --shadow-action-card-hover: 0 0 0 3px #ffc800, 0 6px 0 rgba(0, 0, 0, 0.35);
+}
+
+:root {
+  /* Pixel-Rahmen: 4 versetzte Schatten ohne Spread = Treppen-Ecken */
+  --px: 4px;
+  --pixel-frame:
+    0 calc(var(--px) * -1) 0 0 var(--n64-ink),
+    0 var(--px) 0 0 var(--n64-ink),
+    calc(var(--px) * -1) 0 0 0 var(--n64-ink),
+    var(--px) 0 0 0 var(--n64-ink);
+  --n64-ink: #0b0720;
+  --n64-red: #e0262c;
+  --n64-yellow: #ffc800;
+  --n64-green: #1fa83d;
+  --n64-blue: #1f4fd8;
+}
+
+/* ---------- Hintergrund: lila Verlauf + Schachbrett wie im Konsolenmenü */
+body {
+  background-color: #120d2f !important;
+  font-family: var(--font-sans);
+}
+#hex-grid {
+  background:
+    radial-gradient(ellipse at 50% -10%, #2f2468 0%, #1a1440 50%, #0d0a22 100%);
+}
+#hex-grid > * {
+  display: none !important;
+}
+#hex-grid::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background-image: conic-gradient(
+    rgba(255, 255, 255, 0.035) 25%,
+    transparent 0 50%,
+    rgba(255, 255, 255, 0.035) 0 75%,
+    transparent 0
+  );
+  background-size: 64px 64px;
+  image-rendering: pixelated;
+  transform: perspective(600px) rotateX(55deg) translateY(10%);
+  transform-origin: 50% 100%;
+  mask-image: linear-gradient(to top, #000 0%, transparent 75%);
+}
+/* ---------- Überschriften: dicke 3D-Schrift */
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  text-shadow:
+    3px 3px 0 var(--n64-ink);
+}
+
+/* ---------- Pixel-Darstellung für Bilder/Karte (kein Weichzeichnen) */
+img,
+canvas {
+  image-rendering: pixelated;
+}
+
+/* ---------- Buttons: Pixel-Klötze mit Licht- und Schattenkante */
+button[class*="bg-"]:not([class*="bg-transparent"]),
+[role="button"][class*="bg-"]:not([class*="bg-transparent"]) {
+  border-radius: 0 !important;
+  box-shadow:
+    var(--pixel-frame),
+    inset var(--px) var(--px) 0 0 rgba(255, 255, 255, 0.35),
+    inset calc(var(--px) * -1) calc(var(--px) * -1) 0 0 rgba(0, 0, 0, 0.35),
+    0 calc(var(--px) * 2) 0 0 var(--n64-ink);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
+  transition: none;
+}
+button[class*="bg-"]:not([class*="bg-transparent"]):not(:disabled):hover {
+  filter: brightness(1.15);
+}
+button[class*="bg-"]:not([class*="bg-transparent"]):not(:disabled):active {
+  transform: translateY(var(--px));
+  box-shadow:
+    var(--pixel-frame),
+    inset var(--px) var(--px) 0 0 rgba(0, 0, 0, 0.3),
+    0 var(--px) 0 0 var(--n64-ink);
+}
+button.uppercase,
+button [class~="uppercase"],
+button[class*="uppercase"] {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Panels (Menüs, HUD-Kästen): Pixel-Rahmen */
+[class*="backdrop-blur"]:not(body):not(html),
+[class*="bg-gray-800"],
+[class*="bg-gray-900"],
+[class*="bg-zinc-800"],
+[class*="bg-zinc-900"],
+[class*="bg-slate-800"],
+[class*="bg-surface"] {
+  box-shadow:
+    var(--pixel-frame),
+    inset var(--px) var(--px) 0 0 rgba(255, 255, 255, 0.1),
+    inset calc(var(--px) * -1) calc(var(--px) * -1) 0 0 rgba(0, 0, 0, 0.25);
+  backdrop-filter: none !important;
+}
+
+/* ---------- Eingabefelder */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+select,
+textarea {
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+input[type="range"] {
+  accent-color: var(--n64-yellow);
+}
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--n64-green);
+}
+
+/* ---------- Scrollbars im Retro-Stil */
+* {
+  scrollbar-color: var(--n64-yellow) #1d1645;
+}
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #1d1645;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--n64-yellow);
+  border: 3px solid #1d1645;
+}
+
+/* ---------- Textauswahl */
+::selection {
+  background: var(--n64-yellow);
+  color: var(--n64-ink);
+}

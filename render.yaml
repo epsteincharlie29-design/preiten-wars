@@ -1,0 +1,28 @@
+# PreitenWars (OpenFront) auf Render (Gratis-Plan) - alles auf EINEM Port (SINGLE_PORT=1)
+services:
+  - type: web
+    name: preitenwars
+    runtime: node
+    plan: free
+    buildCommand: npm install -g npm@12.1.0 || true; npm ci --ignore-scripts && npx vite build && npx tsx scripts/buildAssetHashes.ts
+    startCommand: DOMAIN=${RENDER_EXTERNAL_HOSTNAME:-localhost} npx tsx src/server/Server.ts
+    healthCheckPath: /api/public_lobbies
+    envVars:
+      - key: NODE_VERSION
+        value: 24.15.0
+      - key: NPM_CONFIG_ENGINE_STRICT
+        value: "false"
+      - key: SINGLE_PORT
+        value: "1"
+      - key: GAME_ENV
+        value: dev
+      - key: NUM_WORKERS
+        value: "1"
+      - key: GIT_COMMIT
+        value: preiten
+      - key: TURNSTILE_SITE_KEY
+        value: 1x00000000000000000000AA
+      - key: API_KEY
+        generateValue: true
+      - key: ADMIN_BOT_API_KEY
+        generateValue: true
