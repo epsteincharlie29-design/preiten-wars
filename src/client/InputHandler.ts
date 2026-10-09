@@ -1,3 +1,4 @@
+import { preitenBuildStack } from "./PreitenBuildStack";
 import { EventBus, GameEvent } from "../core/EventBus";
 import { PlayerBuildableUnitType, UnitType } from "../core/game/Game";
 import {
@@ -1146,10 +1147,12 @@ export class InputHandler {
       this.uiState.ghostStructure === ghostStructure &&
       ghostStructure !== null
     ) {
+      // PreitenWars: zweimal dieselbe Bau-Taste wechselt zwischen 1 und der eingestellten Bau-Anzahl
+      const stack = preitenBuildStack();
       this.uiState.upgradeMultiplier =
-        this.uiState.upgradeMultiplier === 1 ? 5 : 1;
+        this.uiState.upgradeMultiplier === stack ? (stack === 1 ? 5 : 1) : stack;
     } else {
-      this.uiState.upgradeMultiplier = 1;
+      this.uiState.upgradeMultiplier = preitenBuildStack();
       this.uiState.ghostStructure = ghostStructure;
     }
   }

@@ -1,3 +1,4 @@
+import { PREITEN_BUILD_STACK_KEY, preitenBuildStack } from "../../PreitenBuildStack";
 import { html, LitElement } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
 import { crazyGamesSDK } from "src/client/CrazyGamesSDK";
@@ -131,6 +132,18 @@ export class SettingsModal extends LitElement implements Controller {
     this.requestUpdate();
   }
 
+  // PreitenWars: wie viele Stufen/Einheiten ein Bau-Klick auf einmal setzt
+  private onBuildStackClick() {
+    const opts = [1, 2, 3, 5, 10, 20];
+    const next = opts[(opts.indexOf(preitenBuildStack()) + 1) % opts.length];
+    try {
+      localStorage.setItem(PREITEN_BUILD_STACK_KEY, String(next));
+    } catch {
+      // egal
+    }
+    this.requestUpdate();
+  }
+
   private onOpenSettingsButtonClick() {
     // index.html hides the page's inline <user-setting id="page-settings">
     // during a match, so the HUD addresses its own non-inline instance by id.
@@ -236,6 +249,19 @@ export class SettingsModal extends LitElement implements Controller {
                   ? translateText("user_setting.on")
                   : translateText("user_setting.off")}
               </div>
+            </button>
+
+            <button
+              class="flex gap-3 items-center w-full text-left p-3 hover:bg-slate-700 rounded-sm text-white transition-colors"
+              @click="${this.onBuildStackClick}"
+            >
+              <div class="flex-1">
+                <div class="font-medium">Bau-Anzahl pro Klick</div>
+                <div class="text-sm text-slate-400">
+                  So viele Stufen/Einheiten setzt ein Bau-Klick auf einmal (kostet entsprechend mehr Gold). Klicken zum Ändern.
+                </div>
+              </div>
+              <div class="text-sm text-slate-400">x${preitenBuildStack()}</div>
             </button>
 
             <div class="border-t border-slate-600 pt-3 mt-4">

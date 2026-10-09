@@ -99,7 +99,10 @@ export function getCdnBase(): string {
     typeof window !== "undefined" &&
     window.BOOTSTRAP_CONFIG?.cdnBase !== undefined
   ) {
-    return window.BOOTSTRAP_CONFIG.cdnBase;
+    // PreitenWars: ohne CDN_BASE die eigene Adresse nehmen. Sonst bekommen Web
+    // Worker (aus blob:-URLs gestartet) nur "/_assets/..." und können die Karte
+    // nicht laden -> das Spiel bleibt bei "Das Spiel startet..." hängen.
+    return window.BOOTSTRAP_CONFIG.cdnBase || window.location.origin;
   }
   return globalThis.__CDN_BASE__ ?? "";
 }
