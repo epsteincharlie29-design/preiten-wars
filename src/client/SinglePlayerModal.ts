@@ -1,3 +1,4 @@
+import { renderEconomyPicker } from "./PreitenEconomy";
 import { html, TemplateResult } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { translateText } from "../client/Utils";
@@ -414,6 +415,15 @@ export class SinglePlayerModal extends BaseModal {
         .onInput=${this.handleMaxTimerValueChanges}
         .onKeyDown=${this.handleMaxTimerValueKeyDown}
       ></toggle-input-card>`,
+      renderEconomyPicker(
+        this.goldMultiplier && this.goldMultiplierValue
+          ? this.goldMultiplierValue
+          : 1,
+        (v) => {
+          this.goldMultiplier = v !== 1;
+          this.goldMultiplierValue = v !== 1 ? v : undefined;
+        },
+      ),
       html`<toggle-input-card
         .labelKey=${"game_settings.gold_multiplier"}
         .checked=${this.goldMultiplier}

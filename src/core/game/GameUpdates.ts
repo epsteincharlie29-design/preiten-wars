@@ -106,6 +106,7 @@ export enum GameUpdateType {
   SpawnPhaseEnd,
   GamePaused,
   DonateEvent,
+  MarketTradeEvent,
 }
 
 export type GameUpdate =
@@ -131,7 +132,18 @@ export type GameUpdate =
   | EmbargoUpdate
   | SpawnPhaseEndUpdate
   | GamePausedUpdate
-  | DonateEventUpdate;
+  | DonateEventUpdate
+  | MarketTradeUpdate;
+
+// PreitenWars-Börse: ein Kauf/Verkauf wurde ausgeführt
+export interface MarketTradeUpdate {
+  type: GameUpdateType.MarketTradeEvent;
+  playerId: PlayerID;
+  asset: number;
+  delta: number; // + gekauft, - verkauft
+  held: number; // Anteile danach
+  gold: number; // bezahlt (+) bzw. erhalten (-)
+}
 
 export interface BonusEventUpdate {
   type: GameUpdateType.BonusEvent;

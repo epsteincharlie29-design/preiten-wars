@@ -31,6 +31,7 @@ export type ClientID = string;
 
 export type Intent =
   | SpawnIntent
+  | MarketTradeIntent
   | AttackIntent
   | CancelAttackIntent
   | BoatAttackIntent
@@ -68,6 +69,7 @@ export type BreakAllianceIntent = z.infer<typeof BreakAllianceIntentSchema>;
 export type TargetPlayerIntent = z.infer<typeof TargetPlayerIntentSchema>;
 export type EmojiIntent = z.infer<typeof EmojiIntentSchema>;
 export type DonateGoldIntent = z.infer<typeof DonateGoldIntentSchema>;
+export type MarketTradeIntent = z.infer<typeof MarketTradeIntentSchema>;
 export type DonateTroopsIntent = z.infer<typeof DonateTroopIntentSchema>;
 export type EmbargoIntent = z.infer<typeof EmbargoIntentSchema>;
 export type BuildUnitIntent = z.infer<typeof BuildUnitIntentSchema>;
@@ -735,6 +737,13 @@ export const DonateGoldIntentSchema = z.object({
   gold: zb.float({ min: 0 }).nullable(),
 });
 
+// PreitenWars-Börse: shares > 0 kaufen, < 0 verkaufen
+export const MarketTradeIntentSchema = z.object({
+  type: z.literal("market_trade"),
+  asset: zb.uint({ max: 63 }),
+  shares: zb.int({ min: -1_000_000_000, max: 1_000_000_000 }),
+});
+
 export const DonateTroopIntentSchema = z.object({
   type: z.literal("donate_troops"),
   recipient: MappedID,
@@ -832,6 +841,7 @@ export const IntentSchema = z.discriminatedUnion("type", [
   EmojiIntentSchema,
   DonateGoldIntentSchema,
   DonateTroopIntentSchema,
+  MarketTradeIntentSchema,
   BuildUnitIntentSchema,
   UpgradeStructureIntentSchema,
   EmbargoIntentSchema,

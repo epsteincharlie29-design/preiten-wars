@@ -123,6 +123,14 @@ export class SendEmojiIntentEvent implements GameEvent {
   ) {}
 }
 
+// PreitenWars-Börse: shares > 0 kaufen, < 0 verkaufen
+export class SendMarketTradeIntentEvent implements GameEvent {
+  constructor(
+    public readonly asset: number,
+    public readonly shares: number,
+  ) {}
+}
+
 export class SendDonateGoldIntentEvent implements GameEvent {
   constructor(
     public readonly recipient: PlayerView,
@@ -314,6 +322,13 @@ export class Transport {
     this.subscribe(SendEmojiIntentEvent, (e) => this.onSendEmojiIntent(e));
     this.subscribe(SendDonateGoldIntentEvent, (e) =>
       this.onSendDonateGoldIntent(e),
+    );
+    this.subscribe(SendMarketTradeIntentEvent, (e) =>
+      this.sendIntent({
+        type: "market_trade",
+        asset: e.asset,
+        shares: e.shares,
+      }),
     );
     this.subscribe(SendDonateTroopsIntentEvent, (e) =>
       this.onSendDonateTroopIntent(e),

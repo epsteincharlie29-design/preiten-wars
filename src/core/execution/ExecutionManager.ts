@@ -11,6 +11,7 @@ import { BoatRetreatExecution } from "./BoatRetreatExecution";
 import { ConstructionExecution } from "./ConstructionExecution";
 import { DeleteUnitExecution } from "./DeleteUnitExecution";
 import { DonateGoldExecution } from "./DonateGoldExecution";
+import { MarketTradeExecution } from "./MarketTradeExecution";
 import { DonateTroopsExecution } from "./DonateTroopExecution";
 import { EmbargoAllExecution } from "./EmbargoAllExecution";
 import { EmbargoExecution } from "./EmbargoExecution";
@@ -101,6 +102,13 @@ export class Executor {
           player,
           intent.recipient,
           intent.troops,
+        );
+      case "market_trade":
+        return new MarketTradeExecution(
+          player,
+          intent.asset,
+          intent.shares,
+          this.gameID(),
         );
       case "donate_gold":
         return new DonateGoldExecution(player, intent.recipient, intent.gold);

@@ -10,6 +10,7 @@ import { ConstructionExecutionSnapshot } from "../execution/ConstructionExecutio
 import { DefensePostExecutionSnapshot } from "../execution/DefensePostExecution";
 import { DeleteUnitExecutionSnapshot } from "../execution/DeleteUnitExecution";
 import { DonateGoldExecutionSnapshot } from "../execution/DonateGoldExecution";
+import { MarketTradeExecutionSnapshot } from "../execution/MarketTradeExecution";
 import { DonateTroopsExecutionSnapshot } from "../execution/DonateTroopExecution";
 import { DoomsdayClockExecutionSnapshot } from "../execution/DoomsdayClockExecution";
 import { EmbargoAllExecutionSnapshot } from "../execution/EmbargoAllExecution";
@@ -64,6 +65,7 @@ export const EXECUTION_SNAPSHOT_TYPES = [
   DefensePostExecutionSnapshot,
   DeleteUnitExecutionSnapshot,
   DonateGoldExecutionSnapshot,
+  MarketTradeExecutionSnapshot,
   DonateTroopsExecutionSnapshot,
   DoomsdayClockExecutionSnapshot,
   EmbargoAllExecutionSnapshot,

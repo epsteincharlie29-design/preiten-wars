@@ -645,6 +645,9 @@ export interface Player {
   gold(): Gold;
   addGold(toAdd: Gold, tile?: TileRef): void;
   removeGold(toRemove: Gold): Gold;
+  // PreitenWars-Börse: Anteile je Wertpapier (Index wie MARKET_ASSETS)
+  marketShares(): number[];
+  setMarketShares(asset: number, shares: number): void;
 
   // Cumulative trade revenue, surfaced on the live PlayerUpdate so clients can
   // compute per-source gold rates (leaderboard "Ship/Train Trade Gold/min").

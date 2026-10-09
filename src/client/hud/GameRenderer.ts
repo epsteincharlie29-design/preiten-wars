@@ -26,6 +26,7 @@ import { BuildMenu } from "./layers/BuildMenu";
 import { ChatDisplay } from "./layers/ChatDisplay";
 import { ChatModal } from "./layers/ChatModal";
 import { ControlPanel } from "./layers/ControlPanel";
+import { MarketPanel } from "./layers/MarketPanel";
 import { EmojiTable } from "./layers/EmojiTable";
 import { EventsDisplay } from "./layers/EventsDisplay";
 import { GameLeftSidebar } from "./layers/GameLeftSidebar";
@@ -105,6 +106,13 @@ export function createRenderer(
   controlPanel.eventBus = eventBus;
   controlPanel.uiState = uiState;
   controlPanel.game = game;
+
+  const marketPanel = document.querySelector("preiten-market") as MarketPanel;
+  if (!(marketPanel instanceof MarketPanel)) {
+    console.error("MarketPanel element not found in the DOM");
+  }
+  marketPanel.eventBus = eventBus;
+  marketPanel.game = game;
 
   const eventsDisplay = document.querySelector(
     "events-display",
@@ -351,6 +359,7 @@ export function createRenderer(
     unitDisplay,
     gameRightSidebar,
     controlPanel,
+    marketPanel,
     playerInfo,
     winModal,
     newLobbyPrompt,

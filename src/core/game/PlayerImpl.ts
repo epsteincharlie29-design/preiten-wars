@@ -138,6 +138,7 @@ export class PlayerImpl implements Player {
   public _pseudo_random: PseudoRandom;
 
   private _gold: bigint;
+  private _marketShares: number[] = [];
   private _troops: bigint;
 
   /** Cumulative ship-trade revenue (arrival credit for src + dst port owners). */
@@ -1353,6 +1354,15 @@ export class PlayerImpl implements Player {
     }
   }
 
+  marketShares(): number[] {
+    return this._marketShares;
+  }
+
+  setMarketShares(asset: number, shares: number): void {
+    while (this._marketShares.length <= asset) this._marketShares.push(0);
+    this._marketShares[asset] = shares;
+  }
+
   removeGold(toRemove: Gold): Gold {
     if (toRemove <= 0n) {
       return 0n;
@@ -1977,6 +1987,7 @@ export class PlayerImpl implements Player {
       trainGold: this._trainGold,
       piracyGold: this._piracyGold,
       goldEarned: this._goldEarned,
+      marketShares: [...this._marketShares],
       markedTraitorTick: this.markedTraitorTick,
       markedDoomsdayClockTick: this.markedDoomsdayClockTick,
       rottedAtTick: this.rottedAtTick,
@@ -2049,6 +2060,7 @@ export class PlayerImpl implements Player {
     this._trainGold = s.trainGold;
     this._piracyGold = s.piracyGold;
     this._goldEarned = s.goldEarned;
+    this._marketShares = s.marketShares ? [...s.marketShares] : [];
     this.markedTraitorTick = s.markedTraitorTick;
     this.markedDoomsdayClockTick = s.markedDoomsdayClockTick;
     this.rottedAtTick = s.rottedAtTick;
@@ -2124,6 +2136,7 @@ export const PlayerSnapshot = snapshotType({
     trainGold: z.bigint(),
     piracyGold: z.bigint(),
     goldEarned: z.bigint(),
+    marketShares: z.array(z.number()).optional(),
     markedTraitorTick: zInt(),
     markedDoomsdayClockTick: zInt(),
     rottedAtTick: zInt(),
